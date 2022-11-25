@@ -5,8 +5,24 @@ function App() {
   const [email, setEmail] = useState("");
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(e);
-    console.log(email);
+    
+    async function postEmail(email) {
+      const settings = {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
+    try {
+        const fetchResponse = await fetch(`http://localhost:3000/`, settings);
+        const data = await fetchResponse.json();
+        return data;
+    } catch (e) {
+        return e;
+    }   
+    }
+    postEmail(email)
   }
   function handleInput(e) {
     setEmail(e.target.value);

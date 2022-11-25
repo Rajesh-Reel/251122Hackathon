@@ -6,6 +6,12 @@ Update the options object to include whatever is submitted on the front end.
 
 Any time a request is made to port 3000 with the endpoint /send-email then link here
 
+Post request
+
+Create an async function frontend which will just send the email
+On the backend create a route handler to handle POST requests, to grab what was sent by front end. Extract and use
+
+
 
 */
 
