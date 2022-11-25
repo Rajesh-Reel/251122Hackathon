@@ -5,36 +5,35 @@ function App() {
   const [email, setEmail] = useState("");
   function handleSubmit(e) {
     e.preventDefault();
-    
+
     async function postEmail(email) {
       const settings = {
-        method: 'POST',
+        method: "POST",
         headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: email,
-        })
-    };
-    try {
+        }),
+      };
+      try {
         const fetchResponse = await fetch(`http://localhost:3000/`, settings);
         const data = await fetchResponse.json();
         return data;
-    } catch (e) {
+      } catch (e) {
         return e;
-    }   
-  }
-    postEmail(email)
-
-    
+      }
+    }
+    postEmail(email);
   }
   function handleInput(e) {
     setEmail(e.target.value);
   }
   return (
     <div className="App">
-      <form>
+      <h1>Wheelers & Dealers</h1>
+      <form className="form">
         <label htmlFor="email-input">Customer's email:</label>
         <br />
         <input type="email" id="email-input" onChange={handleInput} />
