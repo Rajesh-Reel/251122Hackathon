@@ -12,7 +12,10 @@ function App() {
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-        }
+        },
+        body: JSON.stringify({
+          email: email,
+        })
     };
     try {
         const fetchResponse = await fetch(`http://localhost:3000/`, settings);
@@ -21,8 +24,10 @@ function App() {
     } catch (e) {
         return e;
     }   
-    }
+  }
     postEmail(email)
+
+    
   }
   function handleInput(e) {
     setEmail(e.target.value);

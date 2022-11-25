@@ -1,15 +1,22 @@
 //
 import express from "express";
 const app = express();
-const router = app.Router();
+import cors from 'cors'
+app.use(express.json());
+
+app.use(cors())
 
 app.post('/', (req, res) => {
-  res.send(req)
-})
+  console.log(req.body);
+  res.json(req.body)
+})  
+
+// app.post('/', (req, res) => {
+//   res.send(req)
+// })
 
 const PORT = 3000;
 
-app.use(express.json());
 
 
 
