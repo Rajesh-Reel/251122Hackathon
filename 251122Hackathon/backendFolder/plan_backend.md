@@ -1,6 +1,6 @@
-1. Set up the database
+1. Set up the database ✅
 2. Emails:
-   a) set up emails table
+   a) set up emails table ✅
    b) module/request
    c) router
    d) onSubmit
