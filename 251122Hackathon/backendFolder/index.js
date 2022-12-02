@@ -41,8 +41,8 @@ console.log(process.env.SENDER_EMAIL, process.env.EMAIL_KEY);
 // });
 
 app.get("/", function (req, res) {
-  res.send({success: true, message: "Welcome to the back end"});
-})
+  res.send({ success: true, message: "Welcome to the back end" });
+});
 
 app.use("/new", newRouter);
 
