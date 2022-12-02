@@ -36,8 +36,11 @@ function App() {
       <form className="form">
         <label htmlFor="email-input">Customer's email:</label>
         <br />
-        <input type="email" id="email-input" onChange={handleInput} />
+        <input type="email" id="input-email" onChange={handleInput} />
         <br />
+        <label htmlFor="subject">Subject</label>
+        <br />
+        <input type="text" id="input-subject" onChange={handleInput} />
         <input type="submit" value="Send" onClick={handleSubmit} />
       </form>
     </div>

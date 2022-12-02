@@ -8,7 +8,9 @@ dotenv.config();
 app.use(express.json());
 
 app.use(cors());
+
 console.log(process.env.SENDER_EMAIL, process.env.EMAIL_KEY);
+
 app.post("/", (req, res) => {
   console.log(req.body);
   res.json(req.body);
