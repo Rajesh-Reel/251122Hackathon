@@ -1,6 +1,6 @@
 import React from 'react'
-import styles from './Email.module.css'
 import { useState } from 'react';
+import styles from './Email.module.css'
 
 export default function Emails() {
   const [emailDisplay, SetEmailDisplay] = useState([]);
@@ -13,27 +13,37 @@ export default function Emails() {
     const fetchResponse = await fetch(`http://localhost:3000/new`);
     const data = await fetchResponse.json();
     console.log("line 15", data);
-    SetEmailDisplay(data);
+    SetEmailDisplay(data.rows);
+        
+    // console.log("hello", emailDisplay);
     return data;
+  }
+  // for(let i=0; data.length; i++)
+  // data.rows[i].content
+
+  // function DisplayEmails() {
+  //   const emails = data.map
+  //   return emails
+  // }
+  function DeleteSpecificEmail() {
+
   }
 
   return (
     <div className={styles.emailContainer}>
-      <div className={styles.emailRow}>
-        <p>example@gmail.com</p>
-        <button onClick={()=>GetAllEmails()}>Delete</button>
-      </div>
-      <div className={styles.emailRow}>
-        <p>example@gmail.com</p>
-        <button>Delete</button>
-      </div>
-      <div className={styles.emailRow}>
-        <p>example@gmail.com</p>
-        <button>Delete</button>
-      </div>
-      <div className={styles.emailRow}>
-        <p>example@gmail.com</p>
-        <button>Delete</button>
+
+      <button onClick={()=>GetAllEmails()}>Get Database emails</button>
+      <div>
+        <ul>
+          {emailDisplay.map((item) => {
+            return (
+              <div className={styles.emailRow} key={item.id}>
+                <li>{item.content}</li>
+                <button>X</button>
+              </div>
+              )
+          })}
+        </ul>
       </div>
     </div>
   )
