@@ -2,3 +2,6 @@ GET http://localhost:3000/new
 
 ###
 POST http://localhost:3000/new
+
+###
+DELETE http://localhost:3000/new

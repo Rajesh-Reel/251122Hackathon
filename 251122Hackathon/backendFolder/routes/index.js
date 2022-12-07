@@ -20,6 +20,10 @@ router.get("/", async function (req, res) {
   //what difference would it make if we replaced res.json() with res.send() here?
   res.json(result);
 });
-// router.post("/", sendEmail);
+
+router.delete("/:id", async function (req, res) {
+  const id = req.params.id;
+  console.log(id);
+});
 
 export default router;
