@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -15,9 +14,10 @@ export default async function sendEmail(req, res) {
       "X-RapidAPI-Key": `${process.env.EMAIL_KEY}`,
       "X-RapidAPI-Host": "rapidprod-sendgrid-v1.p.rapidapi.com",
     },
+    //TODO: Change the from: to a .env variable
     data: `{"personalizations":[{"to":[{"email":"${req.body.email}"}],"subject":"${req.body.subject}"}],"from":{"email":"from_lorentzbloomguitar@gmail.com"},"content":[{"type":"text/plain","value":"${req.body.message}"}]}`,
   };
-  
+
   axios
     .request(options)
     .then(function (response) {
