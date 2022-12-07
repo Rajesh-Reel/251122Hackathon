@@ -1,5 +1,6 @@
 import { useState, useReducer } from "react";
 import "./App.css";
+import Emails from "./components/Emails";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -63,26 +64,29 @@ function App() {
   return (
     <div className="App">
       <h1>Wheelers & Dealers</h1>
-      <form className="form">
-        <label htmlFor="email-input">Customer's email:</label>
-        <br />
-        <input type="email" value={state.email} id="input-email" onChange={(e) => dispatch({ type: "email", payload: e.target.value})} />
-        <br />
-        <label htmlFor="subject">Subject</label>
-        <br />
-        <input type="text" id="input-subject" value={state.subject} onChange={(e) => dispatch({ type: "subject", payload: e.target.value})} />
-        <br />
-        <label htmlFor="input-message">Message</label>
-        <br />
-        <textarea 
-          name="message"
-          value={state.message}
-          id="input-message"
-          placeholder="Type your email here"
-          onChange={(e) => dispatch({ type: "message", payload: e.target.value})}
-        />
-        <input type="submit" value="Send" onClick={handleSubmit} />
-      </form>
+      <div className="row">
+        <Emails />
+        <form className="form">
+          <label htmlFor="email-input">Customer's email:</label>
+          <br />
+          <input type="email" value={state.email} id="input-email" onChange={(e) => dispatch({ type: "email", payload: e.target.value})} />
+          <br />
+          <label htmlFor="subject">Subject</label>
+          <br />
+          <input type="text" id="input-subject" value={state.subject} onChange={(e) => dispatch({ type: "subject", payload: e.target.value})} />
+          <br />
+          <label htmlFor="input-message">Message</label>
+          <br />
+          <textarea
+            name="message"
+            value={state.message}
+            id="input-message"
+            placeholder="Type your email here"
+            onChange={(e) => dispatch({ type: "message", payload: e.target.value})}
+          />
+          <input type="submit" value="Send" onClick={handleSubmit} />
+        </form>
+      </div>
     </div>
   );
 }
