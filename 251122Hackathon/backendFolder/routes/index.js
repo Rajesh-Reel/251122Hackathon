@@ -1,6 +1,6 @@
 import express from "express";
 import sendEmail from "../models/sendEmail.js";
-import { addEmail, getEmail } from "../models/addEmail.js";
+import { addEmail, getEmail, deleteEmail } from "../models/EmailModels.js";
 
 const router = express.Router();
 
@@ -24,6 +24,12 @@ router.get("/", async function (req, res) {
 router.delete("/:id", async function (req, res) {
   const id = req.params.id;
   console.log(id);
+  const result = await deleteEmail(id);
+
+  res.json({
+    success: true,
+    payload: result,
+  });
 });
 
 export default router;

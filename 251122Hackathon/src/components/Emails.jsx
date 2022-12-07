@@ -22,6 +22,9 @@ export default function Emails() {
       //   "Content-type": "application/json; charset=UTF-8",
       // },
     });
+    const data = await fetchResponse.json();
+    console.log(data);
+    return data;
     // const data = await fetchResponse.json();
   }
 
