@@ -7,7 +7,7 @@ export default function Emails() {
 
   async function GetAllEmails() {
     try {
-    const fetchResponse = await fetch(`http://localhost:3000/new`);
+    const fetchResponse = await fetch(`http://localhost:3000/email`);
     const data = await fetchResponse.json();
 
     SetEmailDisplay(data.rows);
@@ -22,7 +22,7 @@ export default function Emails() {
 }
 
   async function DeleteSpecificEmail(id) {
-    const fetchResponse = await fetch(`http://localhost:3000/new/${id}`, {
+    const fetchResponse = await fetch(`http://localhost:3000/${id}`, {
       method: "DELETE",
       // body: JSON.stringify(id),
       // headers: {

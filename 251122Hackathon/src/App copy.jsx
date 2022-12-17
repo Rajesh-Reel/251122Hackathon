@@ -45,7 +45,7 @@ function App() {
         }),
       };
       try {
-        const fetchResponse = await fetch(`http://localhost:3000/new`, settings);
+        const fetchResponse = await fetch(`http://localhost:3000/`, settings);
         const data = await fetchResponse.json();
         return data;
       } catch (e) {

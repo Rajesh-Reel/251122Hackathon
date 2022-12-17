@@ -1,6 +1,7 @@
 import { useState, useReducer } from "react";
 import "./App.css";
 import Emails from "./components/Emails";
+import sendRequest from "../helpers/sendRequest";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -16,12 +17,6 @@ const reducer = (state, action) => {
 };
 
 function App() {
-  /*
-  State
-  email address
-  subject
-  message
-  */
 
   const [state, dispatch] = useReducer(reducer, {
     email: "",
@@ -29,52 +24,11 @@ function App() {
     message: "",
   });
 
-  async function sendRequest(bodyObj, url) {
-    const settings = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(bodyObj),
-    };
-    try {
-      const fetchResponse = await fetch(url, settings);
-      const data = await fetchResponse.json();
-      return data;
-    } catch (e) {
-      console.log(e);
-      return;
-    }
-  }
-  // const [email, setEmail] = useState("");
-  function handleSubmitEmail(e, string) {
+  function handleSubmit(e, bodyObj, url) {
     e.preventDefault();
-    console.log(string);
-    sendRequest(
-      {
-        email: state.email,
-      },
-      `http://localhost:3000/new`
-    );
+    sendRequest(bodyObj, url);
   }
-  function handleSubmitTemplate(e) {
-    e.preventDefault();
-
-    sendRequest(
-      {
-        message: state.message,
-      },
-      `http://localhost:3000/newdadsg`
-    );
-  }
-
-  // function handleInput(e) {
-  //   setEmail(e.target.value);
-  // }
-
-  // console.log(state);
-
+  
   return (
     <div className="App">
       <h1>Wheelers & Dealers</h1>
@@ -95,8 +49,8 @@ function App() {
             <input
               type="submit"
               value="Add"
-              onClick={(e) => handleSubmitEmail(e, "oi oi")}
-            />
+              onClick={(e) => handleSubmit(e, {email: state.email}, `http://localhost:3000/email`)}
+              />
           </form>
         </div>
         {/*<form className="form">

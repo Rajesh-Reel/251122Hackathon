@@ -17,3 +17,19 @@
    d) Validation:
    -if the 2 get requests !== null, send the POST
    -if number of apples was 0 and changed to not 0, send the POST.
+
+
+front end
+
+Post request to backend
+bodyObj, new endpoint i.e. localhost:3000/send
+
+body object
+{
+   array of emails
+}
+
+email - post
+email/send - get
+email - get
+
