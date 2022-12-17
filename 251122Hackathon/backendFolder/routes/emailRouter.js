@@ -38,3 +38,9 @@ router.delete("/:id", async function (req, res) {
 });
 
 export default router;
+
+/*
+email - post
+email/send - get
+email - get
+*/
