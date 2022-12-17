@@ -29,41 +29,51 @@ function App() {
     message: "",
   });
 
+  async function sendRequest(bodyObj, url) {
+    const settings = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bodyObj),
+    };
+    try {
+      const fetchResponse = await fetch(url, settings);
+      const data = await fetchResponse.json();
+      return data;
+    } catch (e) {
+      console.log(e);
+      return;
+    }
+  }
   // const [email, setEmail] = useState("");
-  function handleSubmit(e) {
+  function handleSubmitEmail(e, string) {
+    e.preventDefault();
+    console.log(string);
+    sendRequest(
+      {
+        email: state.email,
+      },
+      `http://localhost:3000/new`
+    );
+  }
+  function handleSubmitTemplate(e) {
     e.preventDefault();
 
-    async function postEmail(state) {
-      const settings = {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...state,
-        }),
-      };
-      try {
-        const fetchResponse = await fetch(
-          `http://localhost:3000/new`,
-          settings
-        );
-        const data = await fetchResponse.json();
-        return data;
-      } catch (e) {
-        console.log(e);
-        return;
-      }
-    }
-    postEmail(state);
+    sendRequest(
+      {
+        message: state.message,
+      },
+      `http://localhost:3000/newdadsg`
+    );
   }
 
   // function handleInput(e) {
   //   setEmail(e.target.value);
   // }
 
-  console.log(state);
+  // console.log(state);
 
   return (
     <div className="App">
@@ -82,11 +92,15 @@ function App() {
                 dispatch({ type: "email", payload: e.target.value })
               }
             />
-            <input type="submit" value="Add" onClick={handleSubmit} />
+            <input
+              type="submit"
+              value="Add"
+              onClick={(e) => handleSubmitEmail(e, "oi oi")}
+            />
           </form>
         </div>
-        <form className="form">
-          <label htmlFor="email-input">Customer's email:</label>
+        {/*<form className="form">
+           <label htmlFor="email-input">Customer's email:</label>
           <br />
           <input
             type="email"
@@ -96,7 +110,7 @@ function App() {
               dispatch({ type: "email", payload: e.target.value })
             }
           />
-          <br />
+          <br /> 
           <label htmlFor="subject">Subject</label>
           <br />
           <input
@@ -120,7 +134,7 @@ function App() {
             }
           />
           <input type="submit" value="Send" onClick={handleSubmit} />
-        </form>
+        </form>*/}
       </div>
     </div>
   );
