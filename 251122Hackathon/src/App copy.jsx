@@ -4,16 +4,16 @@ import Emails from "./components/Emails";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "email":
-      return { ...state, email: action.payload };
-    case "subject":
-      return { ...state, subject: action.payload };
-    case "message":
-      return { ...state, message: action.payload };
+    case 'email':
+      return {...state, email: action.payload};
+    case 'subject':
+      return {...state, subject: action.payload};
+    case 'message':
+      return {...state, message: action.payload};
     default:
-      throw new Error();
+        throw new Error();
   }
-};
+}
 
 function App() {
   /*
@@ -24,12 +24,12 @@ function App() {
   */
 
   const [state, dispatch] = useReducer(reducer, {
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  // const [email, setEmail] = useState("");
+    email: '',
+    subject: '',
+    message: ''
+  })
+  
+  const [email, setEmail] = useState("");
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -45,10 +45,7 @@ function App() {
         }),
       };
       try {
-        const fetchResponse = await fetch(
-          `http://localhost:3000/new`,
-          settings
-        );
+        const fetchResponse = await fetch(`http://localhost:3000/new`, settings);
         const data = await fetchResponse.json();
         return data;
       } catch (e) {
@@ -58,7 +55,7 @@ function App() {
     }
     postEmail(state);
   }
-
+  
   // function handleInput(e) {
   //   setEmail(e.target.value);
   // }
@@ -69,44 +66,15 @@ function App() {
     <div className="App">
       <h1>Wheelers & Dealers</h1>
       <div className="row">
-        <div>
-          <Emails />
-          <form>
-            <label htmlFor="add-email">Customer's email:</label>
-            <br />
-            <input
-              type="email"
-              value={state.email}
-              id="add-email"
-              onChange={(e) =>
-                dispatch({ type: "email", payload: e.target.value })
-              }
-            />
-            <input type="submit" value="Add" onClick={handleSubmit} />
-          </form>
-        </div>
+        <Emails />
         <form className="form">
           <label htmlFor="email-input">Customer's email:</label>
           <br />
-          <input
-            type="email"
-            value={state.email}
-            id="input-email"
-            onChange={(e) =>
-              dispatch({ type: "email", payload: e.target.value })
-            }
-          />
+          <input type="email" value={state.email} id="input-email" onChange={(e) => dispatch({ type: "email", payload: e.target.value})} />
           <br />
           <label htmlFor="subject">Subject</label>
           <br />
-          <input
-            type="text"
-            id="input-subject"
-            value={state.subject}
-            onChange={(e) =>
-              dispatch({ type: "subject", payload: e.target.value })
-            }
-          />
+          <input type="text" id="input-subject" value={state.subject} onChange={(e) => dispatch({ type: "subject", payload: e.target.value})} />
           <br />
           <label htmlFor="input-message">Message</label>
           <br />
@@ -115,9 +83,7 @@ function App() {
             value={state.message}
             id="input-message"
             placeholder="Type your email here"
-            onChange={(e) =>
-              dispatch({ type: "message", payload: e.target.value })
-            }
+            onChange={(e) => dispatch({ type: "message", payload: e.target.value})}
           />
           <input type="submit" value="Send" onClick={handleSubmit} />
         </form>
