@@ -6,6 +6,7 @@ export default function Emails() {
   const [emailDisplay, SetEmailDisplay] = useState([]);
 
   async function GetAllEmails() {
+    try {
     const fetchResponse = await fetch(`http://localhost:3000/new`);
     const data = await fetchResponse.json();
 
@@ -13,6 +14,12 @@ export default function Emails() {
 
     return data;
   }
+  catch(e) {
+    console.log(e);
+    alert('not connected to the browser');
+  }
+
+}
 
   async function DeleteSpecificEmail(id) {
     const fetchResponse = await fetch(`http://localhost:3000/new/${id}`, {

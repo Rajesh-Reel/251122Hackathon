@@ -11,7 +11,7 @@ const reducer = (state, action) => {
     case 'message':
       return {...state, message: action.payload};
     default:
-      throw new Error();
+        throw new Error();
   }
 }
 
@@ -49,7 +49,8 @@ function App() {
         const data = await fetchResponse.json();
         return data;
       } catch (e) {
-        return e;
+        console.log(e);
+        return;
       }
     }
     postEmail(state);

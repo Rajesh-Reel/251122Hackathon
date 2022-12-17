@@ -1,6 +1,11 @@
 import express from "express";
 import sendEmail from "../models/sendEmail.js";
-import { addEmail, getEmail, deleteEmail } from "../models/EmailModels.js";
+// import { addEmail, getEmail, deleteEmail } from "../models/EmailModels.js";
+import getEmail from '../db/scripts/getEmail.js'
+import deleteEmail from '../db/scripts/deleteEmail.js'
+import addEmail from '../db/scripts/addEmail.js'
+
+
 
 const router = express.Router();
 
