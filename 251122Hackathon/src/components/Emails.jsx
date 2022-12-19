@@ -7,22 +7,20 @@ export default function Emails() {
 
   async function GetAllEmails() {
     try {
-    const fetchResponse = await fetch(`http://localhost:3000/email`);
-    const data = await fetchResponse.json();
+      const fetchResponse = await fetch(`http://localhost:3000/email`);
+      const data = await fetchResponse.json();
 
-    SetEmailDisplay(data.rows);
+      SetEmailDisplay(data.rows);
 
-    return data;
+      return data;
+    } catch (e) {
+      console.log(e);
+      alert("not connected to the browser");
+    }
   }
-  catch(e) {
-    console.log(e);
-    alert('not connected to the browser');
-  }
-
-}
 
   async function DeleteSpecificEmail(id) {
-    const fetchResponse = await fetch(`http://localhost:3000/${id}`, {
+    const fetchResponse = await fetch(`http://localhost:3000/email/${id}`, {
       method: "DELETE",
       // body: JSON.stringify(id),
       // headers: {

@@ -45,9 +45,11 @@ router.delete("/:id", async function (req, res) {
 //   res.json(result.rows);
 // });
 
-router.post("/send", (req, res) => {
+router.post("/send", async function (req, res) {
+  const results = await getEmail();
+  console.log(results.rows);
   console.log(req.body);
-  res.json(req.body);
+  res.json(results.rows);
 
   const options = {
     method: "POST",
@@ -57,8 +59,10 @@ router.post("/send", (req, res) => {
       "X-RapidAPI-Key": `${process.env.EMAIL_KEY}`,
       "X-RapidAPI-Host": "rapidprod-sendgrid-v1.p.rapidapi.com",
     },
-    data: `{"personalizations":[{"to":[{"email":"ph.kaminski.dev@gmail.com"}],"subject":"Yooooo!"}],"from":{"email":"from_philip.doge.kaminski@gmail.com"},"content":[{"type":"text/plain","value":"Hello, World!"}]}`,
+    //TODO: Change the from: to a .env variable
+    data: `{"personalizations":[{"to":[{"email":"ph.kaminski.dev@gmail.com"}],"subject":"Hello world"}],"from":{"email":"from_philip.doge.kaminski@gmail.com"},"content":[{"type":"text/plain","value":"Hello World"}]}`,
   };
+
   axios
     .request(options)
     .then(function (response) {
