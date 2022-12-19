@@ -49,7 +49,8 @@ router.post("/send", async function (req, res) {
   const results = await getEmail();
   console.log(results.rows);
   console.log(req.body);
-  res.json(results.rows);
+
+  res.json(results.rows[0].content);
 
   const options = {
     method: "POST",
@@ -60,7 +61,7 @@ router.post("/send", async function (req, res) {
       "X-RapidAPI-Host": "rapidprod-sendgrid-v1.p.rapidapi.com",
     },
     //TODO: Change the from: to a .env variable
-    data: `{"personalizations":[{"to":[{"email":"ph.kaminski.dev@gmail.com"}],"subject":"Hello world"}],"from":{"email":"from_philip.doge.kaminski@gmail.com"},"content":[{"type":"text/plain","value":"Hello World"}]}`,
+    data: `{"personalizations":[{"to":[{"email":"${results.rows[0].content}"}],"subject":"two requests talkign to each other foso"}],"from":{"email":"from_${process.env.SENDER_EMAIL}"},"content":[{"type":"text/plain","value":"Hello World"}]}`,
   };
 
   axios
