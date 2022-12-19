@@ -15,7 +15,7 @@ export default async function sendEmail(req, res) {
       "X-RapidAPI-Host": "rapidprod-sendgrid-v1.p.rapidapi.com",
     },
     //TODO: Change the from: to a .env variable
-    data: `{"personalizations":[{"to":[{"email":"${req.body.email}"}],"subject":"Hello world"}],"from":{"email":"from_${process.env.SENDER_EMAIL}"},"content":[{"type":"text/plain","value":"Hello World"}]}`,
+    data: `{"personalizations":[{"to":[{"email":"ph.kaminski.dev@gmail.com"}],"subject":"Hello world"}],"from":{"email":"from_${process.env.SENDER_EMAIL}"},"content":[{"type":"text/plain","value":"Hello World"}]}`,
   };
 
   axios
