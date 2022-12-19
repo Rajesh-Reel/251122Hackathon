@@ -4,6 +4,9 @@ import sendEmail from "../models/sendEmail.js";
 import getEmail from "../db/scripts/getEmail.js";
 import deleteEmail from "../db/scripts/deleteEmail.js";
 import addEmail from "../db/scripts/addEmail.js";
+import axios from "axios";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 const router = express.Router();
 
@@ -54,8 +57,17 @@ router.post("/send", (req, res) => {
       "X-RapidAPI-Key": `${process.env.EMAIL_KEY}`,
       "X-RapidAPI-Host": "rapidprod-sendgrid-v1.p.rapidapi.com",
     },
-    data: `{"personalizations":[{"to":[{"email":"${req.body.email}"}],"subject":"Yooooo!"}],"from":{"email":"from_${process.env.SENDER_EMAIL}"},"content":[{"type":"text/plain","value":"Hello, World!"}]}`,
+    data: `{"personalizations":[{"to":[{"email":"ph.kaminski.dev@gmail.com"}],"subject":"Yooooo!"}],"from":{"email":"from_philip.doge.kaminski@gmail.com"},"content":[{"type":"text/plain","value":"Hello, World!"}]}`,
   };
+  axios
+    .request(options)
+    .then(function (response) {
+      console.log(response.data);
+      console.log(process.env.SENDER_EMAIL);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
 });
 
 export default router;
